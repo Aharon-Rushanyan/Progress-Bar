@@ -1,0 +1,141 @@
+@import "../sass/colors.scss";
+
+.StepContainer {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    .start {
+        display: flex;
+        flex-direction: column;
+
+        .notSteps {
+            display: flex;
+            flex-direction: row;
+            margin-top: 30px;
+
+            .Button {
+                width: 60px;
+                margin-left: 2px;
+            }
+        }
+
+        .Warning {
+            color: red;
+            text-align: center;
+            margin-top: 10px;
+        }
+    }
+
+    .Buttons {
+        text-align: center;
+        .Button {
+            width: 80px;
+        }
+        :last-child {
+            margin-left: 20px;
+        }
+    }
+
+    .stepper-wrapper {
+        margin-top: auto;
+        width: fit-content;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .stepper-item {
+        margin: 50px 40px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        flex: 1;
+        :hover {
+            transform: rotate(1deg);
+        }
+        .step-name {
+            width: 50px;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            font-size: 12px;
+        }
+    }
+
+    .stepper-item::before {
+        background: url("../Images/circlenotcompleted.svg");
+        width: 40px;
+        height: 40px;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: contain;
+        content: "";
+        position: absolute;
+        content: "";
+        top: 0px;
+        z-index: 2;
+    }
+
+    .stepper-item::after {
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid #dbdbdb;
+        width: 91px;
+        top: 20px;
+        left: 90%;
+        z-index: 2;
+    }
+
+    .stepper-item .step-counter {
+        position: relative;
+        z-index: 5;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        margin-bottom: 6px;
+    }
+
+    .stepper-item.active {
+        font-weight: bold;
+    }
+
+    .stepper-item.completed::before {
+        background: url("../Images/circle.svg");
+    }
+
+    .stepper-item.completed::after {
+        position: absolute;
+        animation-name: expandBar;
+        animation-duration: 0.7s;
+        animation-delay: 0s;
+        animation-fill-mode: both;
+        transition-timing-function: ease-in-out;
+
+        @keyframes expandBar {
+            from {
+                width: 0px;
+            }
+            to {
+                width: width;
+            }
+        }
+
+        position: absolute;
+        content: "";
+        border-bottom: 2px solid $purple;
+        width: 91px;
+        top: 20px;
+        left: 90%;
+        z-index: 2;
+    }
+
+    .stepper-item:last-child::after {
+        content: none;
+    }
+}
